@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-from .models import Bookmark
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
+from django.urls import reverse_lazy
+from .models import Bookmark
+# Create your views here.
 
 
-class BookmarkListView(ListView):
+class BookmarkListView(ListView) :
     model = Bookmark
+    paginate_by = 6
 
 
 class BookmarkCreateView(CreateView):
@@ -27,7 +29,7 @@ class BookmarkUpdateView(UpdateView):
     template_name_suffix = '_update'
 
 
-class BookmarkDeleteView(DeleteView) :
+class BookmarkDeleteView(DeleteView):
     model = Bookmark
-    success_url = reverse_lazy('bookmark_list')
+    success_url = reverse_lazy('list')
 
