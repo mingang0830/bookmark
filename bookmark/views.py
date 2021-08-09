@@ -3,6 +3,7 @@ from django.views.generic.list import ListView
 from .models import Bookmark
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.views.generic.detail import DetailView
 
 
 class BookmarkListView(ListView):
@@ -14,4 +15,7 @@ class BookmarkCreateView(CreateView):
     fields = ['site_name', 'url']
     success_url = reverse_lazy('list')
     template_name_suffix = '_create'
-# Create your views here.
+
+
+class BookmarkDetailView(DetailView):
+    model = Bookmark
